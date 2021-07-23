@@ -46,7 +46,7 @@ RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 # Install OS applications required for application installation and setup Java
 RUN apt update && apt install unzip tar curl sed ttf-dejavu fonts-dejavu \
  fontconfig libasound2 libglib2.0-0 libpangoft2-1.0-0 -y
- 
+
 #Configure Java 11 using Zulu 11 JDK
 RUN mkdir /usr/lib/jvm -p && cd /usr/lib/jvm/ && curl -o zulu11.tar.gz https://cdn.azul.com/zulu/bin/zulu11.41.23-ca-fx-jdk11.0.8-linux_x64.tar.gz \
 && tar -xzvf zulu11.tar.gz && mv zulu11.41* zulu11-jdk/ && rm zulu11.tar.gz
@@ -63,11 +63,12 @@ ENV PATH="$JAVA_HOME/bin:$PATH"
 # Download Yellowfin installer JAR
 # (This may slow down image creation time)
 #RUN curl -qL https://files.yellowfin.bi/downloads/9.3/yellowfin-9.3.0-20201008-full.jar -o /tmp/yellowfin.jar
+RUN curl -qL http://assets.meld.cx/yellowfin-9.5.1-20210618-full.jar -o /tmp/yellowfin.jar
 
 # Alternatively copy in an installer that has been included image
 # (This will remove the wait time for downloading the installer during image creation)
 # Example syntax for copying in an embedded installer:
-COPY yellowfin-installer.jar /tmp/yellowfin.jar
+#COPY yellowfin-installer.jar /tmp/yellowfin.jar
 
 #######################################################################################################
 # Perform filesystem installation
