@@ -141,8 +141,8 @@ fi
 #                     SIGNALS_CORRELATION_TASK
 #              </param-value>
 #       </init-param>
-#       <init-param> 
-#              <param-name>MaxParallelTaskCounts</param-name> 
+#       <init-param>
+#              <param-name>MaxParallelTaskCounts</param-name>
 #              <param-value>
 #                     2,
 #                     2,
@@ -158,7 +158,7 @@ fi
 #                     2,
 #                     2
 #              </param-value>
-#       </init-param> 
+#       </init-param>
 #       <load-on-startup>11</load-on-startup>
 # </servlet>
 
@@ -213,7 +213,7 @@ fi
 
 # Insert Proxy Host with environment variable $PROXY_HOST
 if [ ! -z "${PROXY_HOST}" ]; then
-  sed -i 's#maxThreads="150"#maxThreads="150" proxyHost="'"$PROXY_HOST"'"#g' /opt/yellowfin/appserver/conf/server.xml
+  sed -i 's#maxThreads="150"#maxThreads="150" secure="true" proxyHost="'"$PROXY_HOST"'"#g' /opt/yellowfin/appserver/conf/server.xml
 fi
 
 
