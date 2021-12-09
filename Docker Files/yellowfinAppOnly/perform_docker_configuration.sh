@@ -91,6 +91,8 @@ if [ ! -z "${JDBC_MAX_COUNT}" ]; then
   sed -i 's@<param-value>25</param-value>@<param-value>'"$JDBC_MAX_COUNT"'</param-value>@g' /opt/yellowfin/appserver/webapps/ROOT/WEB-INF/web.xml
 fi
 
+sed -i 's@<load-on-startup>4</load-on-startup>@<init-param>\n      <param-name>JDBCTimeout</param-name>\n      <param-value>900</param-value>\n    </init-param>\n    <load-on-startup>4</load-on-startup>@g' /opt/yellowfin/appserver/webapps/ROOT/WEB-INF/web.xml
+
 
 #
 #   Insert Cluster Management Servlet
